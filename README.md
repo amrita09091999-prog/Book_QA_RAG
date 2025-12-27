@@ -6,7 +6,7 @@ Question answering on novels using RAG system to help users recall information a
 Book_QA_RAG is an end-to-end Retrieval-Augmented Generation (RAG) system designed to help avid readers recall characters, events, and contextual details while reading long novels.
 Readers often lose track of information across chapters. This system allows users to upload a book (PDF) and ask natural-language questions, receiving context-grounded answers along with retrieval and generation quality evaluation.
 
-**Goal - ** To build a general-purpose QA system for novels that:
+**Goal -** To build a general-purpose QA system for novels that:
 
 1. Improves reading continuity
 2. Helps users recall forgotten details
