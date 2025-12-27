@@ -18,16 +18,22 @@ Readers often lose track of information across chapters. This system allows user
 
 Book PDF
    -> 
+   
 Chunking & Embeddings
    -> 
+   
 Vector Store (FAISS - HNSW)
    -> 
+   
 Hybrid Retrieval (BM25 + Semantic)
    ->
+   
 Cross-Encoder Re-ranking
    ->
+   
 LLM Answer Generation
    ->
+   
 LLM-based Evaluation
 
 
@@ -35,81 +41,78 @@ LLM-based Evaluation
 
 1. Chunking & Embeddings
    
-a) Uses recursive chunking to break books into meaningful text segments
-b) Each chunk is embedded using HuggingFace sentence embeddings
-c) Embeddings are stored in FAISS (HNSW) vector store
-d) Rich metadata added: Page number, Chapter number
+ * Uses recursive chunking to break books into meaningful text segments
+ * Each chunk is embedded using HuggingFace sentence embeddings
+ * Embeddings are stored in FAISS (HNSW) vector store
+ * Mtadata added: Page number, Chapter number
 
-2. Retrieval
+2. Retrieval - A hybrid retrieval strategy is used:
 
-A hybrid retrieval strategy is used:
-
-a) Initial Retrieval
-
-* Keyword-based search: BM25
-* Semantic search: embedding similarity
-* Retrieves ~50 candidate documents
-
-b) Re-ranking
-
-* HuggingFace Cross-Encoder
-* Re-ranks query–document pairs based on semantic relevance
-* Selects top 10 most relevant chunks
+   a) Initial Retrieval
+   
+    * Keyword-based search: BM25
+    * Semantic search: embedding similarity
+    * Retrieves ~50 candidate documents
+   
+   b) Re-ranking
+   
+   * HuggingFace Cross-Encoder
+   * Re-ranks query–document pairs based on semantic relevance
+   * Selects top 10 most relevant chunks
 
 3. Generation
    
-Uses an automated prompt template
-Inputs:
-
-User query
-Top-ranked retrieved documents
-
-Output:
-Context-aware generated answer
-LLM used: Qwen 8B Instruct
+   Uses an automated prompt template
+   Inputs:
+   User query
+   Top-ranked retrieved documents
+   
+   Output:
+   Context-aware generated answer
+   LLM used: Qwen 8B Instruct
 
 4. Evaluation
 
-Evaluation is implemented using  the **LLM-as-a-Judge** paradigm.
-LLM used for evaluation: **Qwen 14B Instruct**
-
-Prompts are crafted using **rubric based prompting** which instructs the LLM to evaluate prompts based on predefined logics
-1. Answer Relevance
+   Evaluation is implemented using  the **LLM-as-a-Judge** paradigm.
+   LLM used for evaluation: **Qwen 14B Instruct**
    
-Inputs: question + retrieved context
-Judges whether the context is sufficient to answer the question
+   Prompts are crafted using **rubric based prompting** which instructs the LLM to evaluate prompts based on predefined logics
+   a) Answer Relevance
+      
+   Inputs: question + retrieved context
+   Judges whether the context is sufficient to answer the question
 
-3.  Faithfulness
+   b) Faithfulness
    
-Inputs: context + generated answer
-Measures factual grounding of the answer
+   Inputs: context + generated answer
+   Measures factual grounding of the answer
 
 
-3. Retrieval Relevance
+   c) Retrieval Relevance
 
-Inputs: query + retrieved documents
-Evaluates relevance of retrieved chunks
+   Inputs: query + retrieved documents
+   Evaluates relevance of retrieved chunks
 
 
 **Backend **- 
 
-Built using FastAPI, exposing the following endpoints:
-
-Book Upload - Upload book PDFs for ingestion
-Question Answering - Submit queries and receive generated answers
-Evaluation
-* Returns structured evaluation feedback:
-* Answer relevance
-* Faithfulness
-* Retrieval relevance
+   Built using FastAPI, exposing the following endpoints:
+   
+   Book Upload - Upload book PDFs for ingestion
+   Question Answering - Submit queries and receive generated answers
+   Evaluation
+   * Returns structured evaluation feedback:
+   * Answer relevance
+   * Faithfulness
+   * Retrieval relevance
 
 **Frontend** - 
 
-Built using Streamlit
-
-Features:
-* Upload book PDFs
-* Ask questions interactively
-* View generated answers
-* Inspect retrieval quality and evaluation results
+   Built using Streamlit
+   
+   Features:
+   * Upload book PDFs
+   * Ask questions interactively
+   * View generated answers
+   * Inspect retrieval quality and evaluation results
 
