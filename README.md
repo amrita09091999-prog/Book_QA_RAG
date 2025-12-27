@@ -17,17 +17,17 @@ Readers often lose track of information across chapters. This system allows user
 **System Architecture** - 
 
 Book PDF
-   ↓
+   -> 
 Chunking & Embeddings
-   ↓
+   -> 
 Vector Store (FAISS - HNSW)
-   ↓
+   -> 
 Hybrid Retrieval (BM25 + Semantic)
-   ↓
+   ->
 Cross-Encoder Re-ranking
-   ↓
+   ->
 LLM Answer Generation
-   ↓
+   ->
 LLM-based Evaluation
 
 
