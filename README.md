@@ -63,6 +63,7 @@ LLM-based Evaluation
 3. Generation
    
    Uses an automated prompt template
+   
    Inputs:
    User query
    Top-ranked retrieved documents
@@ -71,7 +72,7 @@ LLM-based Evaluation
    Context-aware generated answer
    LLM used: Qwen 8B Instruct
 
-4. Evaluation
+5. Evaluation
 
    Evaluation is implemented using  the **LLM-as-a-Judge** paradigm.
    LLM used for evaluation: **Qwen 14B Instruct**
