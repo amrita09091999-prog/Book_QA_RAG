@@ -76,23 +76,23 @@ LLM-based Evaluation
 
    Evaluation is implemented using  the **LLM-as-a-Judge** paradigm.
    LLM used for evaluation: **Qwen 14B Instruct**
-   
    Prompts are crafted using **rubric based prompting** which instructs the LLM to evaluate prompts based on predefined logics
+   
    a) Answer Relevance
       
-   Inputs: question + retrieved context
-   Judges whether the context is sufficient to answer the question
+      Inputs: question + retrieved context
+      Judges whether the context is sufficient to answer the question
 
    b) Faithfulness
    
-   Inputs: context + generated answer
-   Measures factual grounding of the answer
+      Inputs: context + generated answer
+      Measures factual grounding of the answer
 
 
    c) Retrieval Relevance
 
-   Inputs: query + retrieved documents
-   Evaluates relevance of retrieved chunks
+      Inputs: query + retrieved documents
+      Evaluates relevance of retrieved chunks
 
 
 **Backend **- 
